@@ -20,11 +20,11 @@ public class Projectile extends GameObject{
 	
 	void update() {
 		y -= speed;
+		super.update();
 	}
 	
 	void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
-		g.fillRect(x, y, width, height);
+		
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);
 		} else {
