@@ -10,9 +10,15 @@ public class ObjectManager implements ActionListener{
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 	Random random = new Random();
 	int score = 0;
-	
+	int endScore = 0;
+	boolean setEndScore = false;
 	
 	public int getScore() {
+		
+		if (setEndScore == true) {
+			endScore = score;
+			score = 0;
+		}
 		return score;
 	}
 
@@ -82,6 +88,13 @@ public class ObjectManager implements ActionListener{
 					projectiles.get(i).isActive = false;
 					score ++;
 				}
+			}
+		}
+		for(int w = 0; w < aliens.size(); w++) {
+			if (rocketship.collisionBox.intersects(aliens.get(w).collisionBox)) {
+				
+				rocketship.isActive = false;
+				 setEndScore = true;
 			}
 		}
 	}

@@ -25,6 +25,9 @@ public class Rocketship extends GameObject{
 		
 		if (gotImage) {
 			g.drawImage(image, x, y, width, height, null);
+			
+//			g.setColor(Color.red);
+//			g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 		} else {
 			g.setColor(Color.BLUE);
 			g.fillRect(x, y, width, height);
@@ -33,18 +36,22 @@ public class Rocketship extends GameObject{
 	
 	public void right() {
 		x+= speed;
+		update();
 	}
 	
 	public void left() {
 		x-= speed;
+		update();
 	}
 	
 	public void up() {
 		y-= speed;
+		update();
 	}
 	
 	public void down() {
 		y+= speed;
+		update();
 	}
 	
 	void loadImage(String imageFile) {

@@ -52,11 +52,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		objectManager.update();
 		if(rocketShip.isActive == false) {
 			currentState = END;
+			
 		}
 	}
 	
 	void updateEndState() {
-	
+		rocketShip.isActive = true;
 	}
 	
 	void loadImage(String imageFile) {
@@ -103,7 +104,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		g.setColor(Color.CYAN);
 		g.drawString("GAME OVER", 100, 100);
 		g.setFont(normalFont);
-		g.drawString("You killed enemies", 145, 250);
+		g.drawString("You destroyed " + objectManager.getScore() + " enemies", 125, 250);
 		g.drawString("Press ENTER to restart", 130, 550);
 	}
 	
@@ -140,13 +141,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 			if(currentState == END) {
 				currentState = MENU;
+				rocketShip = new Rocketship(250, 700, 50, 50);
+				objectManager = new ObjectManager(rocketShip);
+				
 			}
-			else {
-				currentState++;
-				if (currentState == GAME) {
-					startGame();
-				}
+			else if (currentState == MENU){
+				currentState = GAME;
+				startGame();
 			}
+				
 		}
 		if(arg0.getKeyCode() == KeyEvent.VK_UP) {	
 			if (rocketShip.y > 0) {
