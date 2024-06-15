@@ -11,15 +11,12 @@ public class ObjectManager implements ActionListener{
 	Random random = new Random();
 	int score = 0;
 	int endScore = 0;
-	boolean setEndScore = false;
+	
 	
 	public int getScore() {
 		
-		if (setEndScore == true) {
-			endScore = score;
-			score = 0;
-		}
-		return score;
+		endScore = score;
+		return endScore;
 	}
 
 
@@ -94,7 +91,7 @@ public class ObjectManager implements ActionListener{
 			if (rocketship.collisionBox.intersects(aliens.get(w).collisionBox)) {
 				
 				rocketship.isActive = false;
-				 setEndScore = true;
+
 			}
 		}
 	}

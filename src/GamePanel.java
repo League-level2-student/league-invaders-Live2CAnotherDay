@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -56,6 +57,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		}
 	}
 	
+	
+	
 	void updateEndState() {
 		rocketShip.isActive = true;
 	}
@@ -92,7 +95,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		}
 		objectManager.draw(g);
-		String scoreString = "score: " + objectManager.getScore();
+		String scoreString = "score: " +  objectManager.getScore();
 		g.setColor(Color.WHITE);
 		g.drawString(scoreString, 20 , 20);
 	}
@@ -126,7 +129,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			updateMenuState();
 		}else if(currentState == GAME) {
 			updateGameState();
-	
 		}else if(currentState == END) {
 			updateEndState();
 		}
@@ -180,6 +182,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			
 		}else if(currentState == END) {
 			alienSpawn.stop();
+		}
+		
+		if(currentState == MENU) {
+			if(arg0.getKeyCode()== KeyEvent.VK_SPACE) {
+				//System.out.println("Instructions: \n Press the Arrow Keys to move the RocketShip \n Press Space to shoot \n OBJECTIVE: Shoot the Aliens that are attempting to invade earth. \n Tip: Earth has unlimited health bar, so in sticky situations just avoid colliding with the aliens");
+				JOptionPane.showMessageDialog(null, "Instructions: \n Press the Arrow Keys to move the RocketShip \n Press Space to shoot \n OBJECTIVE: Shoot the Aliens that are attempting to invade earth. \n Tip: Earth has unlimited health bar, so in sticky situations just avoid colliding with the aliens");
+			}
 		}
 		
 		
